@@ -8,7 +8,8 @@
     <s:VGroup id="loginForm"
         top="20" left="20" right="20">
 
-        <s:Label text="login form"/>
+        <s:Label text="Login"
+                 fontSize="42"/>
 
         <s:Label text="username:"/>
         <s:TextInput id="username_ti"

@@ -5,6 +5,47 @@
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
     xmlns:s="library://ns.adobe.com/flex/spark">
 
-    <!-- TODO: Create the Register View UI -->
+    <s:VGroup id="registerForm"
+              top="20" left="20" right="20">
+        <s:Label text="register"
+                 fontSize="42"/>
+
+        <s:Label text="Username *"/>
+        <s:TextInput id="reg_username_ti"
+                     prompt="choose a username"/>
+
+        <s:Label text="Email *"/>
+        <s:TextInput id="reg_email_ti"
+                     prompt="please enter your email"/>
+
+        <s:Label text="Password *"/>
+        <s:TextInput id="reg_password_ti"
+                     prompt="please choose a password"
+                     displayAsPassword="true"/>
+
+        <s:Label text="Confirm password *"/>
+        <s:TextInput id="confirm_password_ti"
+                     prompt="please confirm your password"
+                     displayAsPassword="true"/>
+
+        <s:Label text="gender"/>
+        <s:HGroup id="genderSelect">
+            <s:RadioButton/>
+            <s:Label text="male"/>
+            <s:RadioButton/>
+            <s:Label text="female"/>
+
+        </s:HGroup>
+
+        <s:HGroup id="termsAndCond">
+          <s:CheckBox/>
+          <s:Label text="agree to terms *"/>
+        </s:HGroup>
+
+
+        <s:Button id="submit_btn"
+                  label="register"/>
+
+    </s:VGroup>
 
 </s:View>
