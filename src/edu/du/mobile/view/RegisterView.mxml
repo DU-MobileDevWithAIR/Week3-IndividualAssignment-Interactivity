@@ -7,6 +7,7 @@
 
     <s:VGroup id="registerForm"
               top="20" left="20" right="20">
+
         <s:Label text="Register"
                  fontSize="42"
                  paddingLeft="140"
