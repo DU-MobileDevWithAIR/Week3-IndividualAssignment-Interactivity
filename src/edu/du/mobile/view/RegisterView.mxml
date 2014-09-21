@@ -40,7 +40,6 @@
             <s:Label text="male"/>
             <s:RadioButton/>
             <s:Label text="female"/>
-
         </s:HGroup>
 
         <s:HGroup id="termsAndCond">

@@ -3,10 +3,14 @@
   Created by jun on 9/14/14.
 -->
 <View xmlns:fx="http://ns.adobe.com/mxml/2009"
-    xmlns="library://ns.adobe.com/flex/spark">
+    xmlns="library://ns.adobe.com/flex/spark"
+    xmlns:mx="library://ns.adobe.com/flex/mx">
 
-    <VGroup id="registerForm"
-              top="20" left="20" right="20">
+    <VGroup top="20"
+            left="20"
+            right="20"
+            height="100%">
+
                 <HGroup>
                     <Label text="Nearby Locations"
                            paddingLeft="125"/>
@@ -15,18 +19,22 @@
                            color="blue"
                            paddingLeft="70"/>
                 </HGroup>
-    </VGroup>
 
-    <VGroup id="locationList"
+    <List id="locationList"
             top="100"
             left="20"
-            right="20">
-            <Label text="Item One"
-                   paddingBottom="10"/>
-            <Label text="Item Two"
-                   paddingBottom="10"/>
-            <Label text="Item Three"
-                   paddingBottom="10"/>
+            right="20"
+            width="100%"
+            height="100%">
+
+        <mx:ArrayCollection>
+            <fx:String>Item one</fx:String>
+            <fx:String>Item two</fx:String>
+            <fx:String>Item three</fx:String>
+        </mx:ArrayCollection>
+
+    </List>
 
     </VGroup>
+
 </View>
