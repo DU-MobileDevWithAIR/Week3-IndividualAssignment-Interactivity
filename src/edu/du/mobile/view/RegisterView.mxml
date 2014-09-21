@@ -7,28 +7,34 @@
 
     <s:VGroup id="registerForm"
               top="20" left="20" right="20">
-        <s:Label text="register"
-                 fontSize="42"/>
+        <s:Label text="Register"
+                 fontSize="42"
+                 paddingLeft="140"
+                 paddingBottom="20"/>
 
         <s:Label text="Username *"/>
         <s:TextInput id="reg_username_ti"
                      prompt="choose a username"/>
 
-        <s:Label text="Email *"/>
+        <s:Label text="Email *"
+                 paddingTop="20"/>
         <s:TextInput id="reg_email_ti"
                      prompt="please enter your email"/>
 
-        <s:Label text="Password *"/>
+        <s:Label text="Password *"
+                 paddingTop="20"/>
         <s:TextInput id="reg_password_ti"
                      prompt="please choose a password"
                      displayAsPassword="true"/>
 
-        <s:Label text="Confirm password *"/>
+        <s:Label text="Confirm password *"
+                 paddingTop="20"/>
         <s:TextInput id="confirm_password_ti"
                      prompt="please confirm your password"
                      displayAsPassword="true"/>
 
-        <s:Label text="gender"/>
+        <s:Label text="gender"
+                 paddingTop="20"/>
         <s:HGroup id="genderSelect">
             <s:RadioButton/>
             <s:Label text="male"/>

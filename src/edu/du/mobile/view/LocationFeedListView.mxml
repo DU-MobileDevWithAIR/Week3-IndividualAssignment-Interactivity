@@ -8,9 +8,25 @@
     <VGroup id="registerForm"
               top="20" left="20" right="20">
                 <HGroup>
-                    <Label text="Nearby Locations"/>
-                    <Label text="Done"/>
+                    <Label text="Nearby Locations"
+                           paddingLeft="125"/>
+                    <Label text="Done"
+                           fontSize="18"
+                           color="blue"
+                           paddingLeft="70"/>
                 </HGroup>
     </VGroup>
 
+    <VGroup id="locationList"
+            top="100"
+            left="20"
+            right="20">
+            <Label text="Item One"
+                   paddingBottom="10"/>
+            <Label text="Item Two"
+                   paddingBottom="10"/>
+            <Label text="Item Three"
+                   paddingBottom="10"/>
+
+    </VGroup>
 </View>
