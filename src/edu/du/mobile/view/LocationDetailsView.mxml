@@ -35,11 +35,11 @@
 
         <Label text="Website"
                color="blue"/>
-        <Label text="http://www.acedenver.com"/>
+        <Label text="http://www.locationplace.com"/>
 
         <Label text="Address"
                color="blue"/>
-        <Label text="501 E 17th Ave"/>
+        <Label text="501 E Hello World Ave"/>
         <Label text="Denver, CO 80203"/>
 
         <HGroup>
