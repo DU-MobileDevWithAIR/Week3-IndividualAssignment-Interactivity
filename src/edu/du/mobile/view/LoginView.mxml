@@ -8,19 +8,22 @@
     <s:VGroup id="loginForm"
         top="20" left="20" right="20">
 
-        <s:Label text="login form"/>
+        <s:Label text="Please Login"
+                 fontSize="42"
+                 paddingLeft="100"
+                 paddingBottom="20"/>
 
-        <s:Label text="username:"/>
-        <s:TextInput id="username_ti"
-            prompt="enter your username"/>
+        <s:Label text="Username or email"/>
+        <s:TextInput id="username_ti"/>
 
-        <s:Label text="password:"/>
+        <s:Label text="password"
+                 paddingTop="20"/>
         <s:TextInput id="password_ti"
-            prompt="enter your password"
-            displayAsPassword="true"/>
+                     displayAsPassword="true"/>
 
         <s:Button id="submit_btn"
-            label="login"/>
+                  label="Login"
+                  left="150"/>
 
     </s:VGroup>
 

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+  Created by scotty on 9/21/14.
+-->
+<View xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns="library://ns.adobe.com/flex/spark"
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <VGroup top="20"
+            left="20"
+            right="20"
+            height="100%">
+
+                <HGroup>
+                    <Label text="Map"
+                           color="blue"
+                           paddingLeft="25"/>
+                    <Label text="Location"
+                           paddingLeft="100"/>
+                    <Label text="Share"
+                           color="blue"
+                           paddingLeft="70"/>
+                </HGroup>
+
+        <Image id="locationImage"
+               height="300"
+               width="100%"
+               backgroundColor="#000000"/>
+
+
+
+        <Label text="Phone"
+               color="blue"/>
+        <Label text="303-333-3333"/>
+
+        <Label text="Website"
+               color="blue"/>
+        <Label text="http://www.locationplace.com"/>
+
+        <Label text="Address"
+               color="blue"/>
+        <Label text="501 E Hello World Ave"/>
+        <Label text="Denver, CO 80203"/>
+
+        <HGroup>
+            <Label text="Directions to Here"
+                   color="blue"/>
+            <Label text="Directions from Here"
+                   color="blue"/>
+        </HGroup>
+
+    </VGroup>
+
+</View>
