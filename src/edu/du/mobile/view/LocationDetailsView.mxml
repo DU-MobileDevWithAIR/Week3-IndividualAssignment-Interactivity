@@ -2,53 +2,54 @@
 <!--
   Created by scotty on 9/21/14.
 -->
-<View xmlns:fx="http://ns.adobe.com/mxml/2009"
-    xmlns="library://ns.adobe.com/flex/spark"
-    xmlns:mx="library://ns.adobe.com/flex/mx">
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark">
 
-    <VGroup top="20"
-            left="20"
-            right="20"
-            height="100%">
+    <s:Scroller top="20" left="20" right="20"
+        height="100%">
 
-                <HGroup>
-                    <Label text="Map"
-                           color="blue"
-                           paddingLeft="25"/>
-                    <Label text="Location"
-                           paddingLeft="100"/>
-                    <Label text="Share"
-                           color="blue"
-                           paddingLeft="70"/>
-                </HGroup>
+        <s:VGroup >
 
-        <Image id="locationImage"
+            <s:HGroup>
+                <s:Label text="Map"
+                   color="blue"
+                   paddingLeft="25"/>
+                <s:Label text="Location"
+                   paddingLeft="100"/>
+                <s:Label text="Share"
+                   color="blue"
+                   paddingLeft="70"/>
+            </s:HGroup>
+
+            <s:Image id="locationImage"
                height="300"
                width="100%"
                backgroundColor="#000000"/>
 
 
 
-        <Label text="Phone"
+            <s:Label text="Phone"
                color="blue"/>
-        <Label text="303-333-3333"/>
+            <s:Label text="303-333-3333"/>
 
-        <Label text="Website"
+            <s:Label text="Website"
                color="blue"/>
-        <Label text="http://www.locationplace.com"/>
+            <s:Label text="http://www.locationplace.com"/>
 
-        <Label text="Address"
+            <s:Label text="Address"
                color="blue"/>
-        <Label text="501 E Hello World Ave"/>
-        <Label text="Denver, CO 80203"/>
+            <s:Label text="501 E Hello World Ave"/>
+            <s:Label text="Denver, CO 80203"/>
 
-        <HGroup>
-            <Label text="Directions to Here"
-                   color="blue"/>
-            <Label text="Directions from Here"
-                   color="blue"/>
-        </HGroup>
+            <s:HGroup width="100%">
+                <s:Label text="Directions to Here"
+                    color="blue"/>
+                <s:Spacer width="100%"/>
+                <s:Label text="Directions from Here"
+                    color="blue"/>
+            </s:HGroup>
 
-    </VGroup>
+        </s:VGroup>
 
-</View>
+    </s:Scroller>
+</s:View>

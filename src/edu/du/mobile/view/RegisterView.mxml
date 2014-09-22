@@ -3,55 +3,87 @@
   Created by jun on 9/14/14.
 -->
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-    xmlns:s="library://ns.adobe.com/flex/spark">
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:popups="edu.du.mobile.view.popups.*">
 
-    <s:VGroup id="registerForm"
-              top="20" left="20" right="20">
+    <fx:Script>
+        <![CDATA[
+            import mx.managers.PopUpManager;
 
-        <s:Label text="Register"
-                 fontSize="42"
-                 paddingLeft="140"
-                 paddingBottom="20"/>
+            private function _onSubmitClick( event:Event ):void
+            {
+                // TODO: Make sure all required fields are filled out
 
-        <s:Label text="Username *"/>
-        <s:TextInput id="reg_username_ti"
-                     prompt="choose a username"/>
+                // TODO: If the required fields are filled out, display the registerPopup
+                //      with title = "Form Submit Success" and message = "Thank you for registering"
+                //
+                //  OR
+                //
+                //  If all required form fields are not filled out, then display the registerPopup
+                //      with title = "Form Submit Failed"
+                //      and message = "Please fill out all required (*) fields and try again."
 
-        <s:Label text="Email *"
-                 paddingTop="20"/>
-        <s:TextInput id="reg_email_ti"
-                     prompt="please enter your email"/>
+                registerPopup.open( this, true );
+                PopUpManager.centerPopUp( registerPopup );
+            }
+        ]]>
+    </fx:Script>
 
-        <s:Label text="Password *"
-                 paddingTop="20"/>
-        <s:TextInput id="reg_password_ti"
-                     prompt="please choose a password"
-                     displayAsPassword="true"/>
+    <fx:Declarations>
+        <s:RadioButtonGroup id="genderRBGroup"/>
+        <popups:HelloWorldAppPopup id="registerPopup"/>
+    </fx:Declarations>
 
-        <s:Label text="Confirm password *"
-                 paddingTop="20"/>
-        <s:TextInput id="confirm_password_ti"
-                     prompt="please confirm your password"
-                     displayAsPassword="true"/>
+    <s:Scroller height="100%" width="100%"
+        top="20" left="20" right="20">
 
-        <s:Label text="gender"
-                 paddingTop="20"/>
-        <s:HGroup id="genderSelect">
-            <s:RadioButton/>
-            <s:Label text="male"/>
-            <s:RadioButton/>
-            <s:Label text="female"/>
-        </s:HGroup>
+        <s:VGroup id="registerForm">
 
-        <s:HGroup id="termsAndCond">
-          <s:CheckBox/>
-          <s:Label text="agree to terms *"/>
-        </s:HGroup>
+            <s:Label text="Register"
+                fontSize="42"
+                paddingLeft="140"/>
 
+            <s:Label text="Username *"/>
+            <s:TextInput id="reg_username_ti"
+                prompt="choose a username"/>
 
-        <s:Button id="submit_btn"
-                  label="register"/>
+            <s:Label text="Email *"/>
+            <s:TextInput id="reg_email_ti"
+                prompt="please enter your email"/>
 
-    </s:VGroup>
+            <s:Label text="Password *"/>
+            <s:TextInput id="reg_password_ti"
+                prompt="please choose a password"
+                displayAsPassword="true"/>
 
+            <s:Label text="Confirm password *"/>
+            <s:TextInput id="confirm_password_ti"
+                prompt="please confirm your password"
+                displayAsPassword="true"/>
+
+            <s:Label text="gender"/>
+            <s:HGroup id="genderSelect">
+
+                <s:RadioButton id="male_rb"
+                    group="{ genderRBGroup }"/>
+                <s:Label text="male"/>
+
+                <s:RadioButton id="female_rb"
+                    group="{ genderRBGroup }"/>
+                <s:Label text="female"/>
+
+            </s:HGroup>
+
+            <s:HGroup id="termsAndCond">
+              <s:CheckBox id="agreeToTerms_chk"/>
+              <s:Label text="agree to terms *"/>
+            </s:HGroup>
+
+            <s:Button id="submit_btn"
+                label="register"
+                click="_onSubmitClick( event )"/>
+
+        </s:VGroup>
+
+    </s:Scroller>
 </s:View>

@@ -2,39 +2,45 @@
 <!--
   Created by jun on 9/14/14.
 -->
-<View xmlns:fx="http://ns.adobe.com/mxml/2009"
-    xmlns="library://ns.adobe.com/flex/spark"
-    xmlns:mx="library://ns.adobe.com/flex/mx">
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark">
 
-    <VGroup top="20"
-            left="20"
-            right="20"
-            height="100%">
+    <fx:Script>
+        <![CDATA[
+            private function _onListChange( event:Event ):void
+            {
+                // TODO: Navigate to the Location Details view.
+            }
+        ]]>
+    </fx:Script>
 
-                <HGroup>
-                    <Label text="Nearby Locations"
-                           paddingLeft="125"/>
-                    <Label text="Done"
-                           fontSize="18"
-                           color="blue"
-                           paddingLeft="70"/>
-                </HGroup>
+    <s:layout>
+        <s:VerticalLayout paddingTop="20" paddingLeft="20" paddingRight="20"/>
+    </s:layout>
 
-    <List id="locationList"
-            top="100"
-            left="20"
-            right="20"
-            width="100%"
-            height="100%">
 
-        <mx:ArrayCollection>
+    <s:HGroup>
+        <s:Label text="Nearby Locations"
+            paddingLeft="125"/>
+        <s:Label text="Done"
+            fontSize="18"
+            color="blue"
+            paddingLeft="70"/>
+    </s:HGroup>
+
+
+    <!-- TODO: When the selected item is changed in the list you will execute the _onListChange() event listener -->
+    <s:List id="locationList"
+        top="100"
+        width="100%"
+        height="100%">
+
+        <s:ArrayList>
             <fx:String>Item one</fx:String>
             <fx:String>Item two</fx:String>
             <fx:String>Item three</fx:String>
-        </mx:ArrayCollection>
+        </s:ArrayList>
 
-    </List>
+    </s:List>
 
-    </VGroup>
-
-</View>
+</s:View>
