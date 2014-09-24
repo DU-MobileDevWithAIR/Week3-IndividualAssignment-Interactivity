@@ -8,31 +8,31 @@
 
     <fx:Script>
         <![CDATA[
-            import mx.managers.PopUpManager;
+        import mx.managers.PopUpManager;
 
-            private function _onSubmitClick( event:Event ):void
-            {
-                // TODO: Make sure all required fields are filled out
+        private function _onSubmitClick( event:Event ):void
+        {
+            // TODO: Make sure all required fields are filled out
 
-                // TODO: If the required fields are filled out, display the registerPopup
-                //      with title = "Form Submit Success" and message = "Thank you for registering"
-                //
-                //  OR
-                //
-                //  If all required form fields are not filled out, then display the registerPopup
-                //      with title = "Form Submit Failed"
-                //      and message = "Please fill out all required (*) fields and try again."
-
-                registerPopup.open( this, true );
-                PopUpManager.centerPopUp( registerPopup );
+            // TODO: If the required fields are filled out, display the registerPopup
+            if (reg_username_ti.text.length > 0 && reg_email_ti.text.length > 0 &&
+                    reg_password_ti.text.length > 0 && confirm_password_ti.text.length > 0 && agreeToTerms_chk.selected == true) {
+                registerSuccessPopup.open( this, true );
+                PopUpManager.centerPopUp( registerSuccessPopup );
+            } else {
+                registerFailPopup.open( this, true );
+                PopUpManager.centerPopUp( registerFailPopup );
             }
+        }
         ]]>
     </fx:Script>
 
     <fx:Declarations>
         <s:RadioButtonGroup id="genderRBGroup"/>
-        <popups:HelloWorldAppPopup id="registerPopup"/>
+        <popups:RegisterPopUpSuccess id="registerSuccessPopup"/>
+        <popups:RegisterAppPopUpFailed id="registerFailPopup"/>
     </fx:Declarations>
+
 
     <s:Scroller height="100%" width="100%"
         top="20" left="20" right="20">
