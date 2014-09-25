@@ -4,6 +4,7 @@
 -->
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
     xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:popups="edu.du.mobile.view.popups.*"
     creationComplete="initApp();">
 
     <!-- TODO: Make this view work similar to the RegisterView:
@@ -15,9 +16,8 @@
 
     <fx:Script>
         <![CDATA[
-        import spark.components.Alert;
+        import mx.managers.PopUpManager;
 
-        public var myAlert:Alert;
 
         private function initApp():void {
             submit_btn.addEventListener(MouseEvent.CLICK, myEventHandler);
@@ -42,23 +42,26 @@
                 error += "Password is incorrect\n";
             }
 
-            if (error == '') {
-                myAlert = Alert.show('Your login succeeded.','Success.');
+            if (error != '') {
+                loginPopup.title = 'Your Login failed.';
+                loginPopup.message = error;
             } else {
-                myAlert = Alert.show(error, 'Your login failed.');
+                loginPopup.title = 'Success.';
+                loginPopup.message = 'Your login succeeded.';
             }
 
+            loginPopup.open( this, true );
+            PopUpManager.centerPopUp( loginPopup );
         }
         ]]>
     </fx:Script>
-
-
-
+    <fx:Declarations>
+        <popups:HelloWorldAppPopup id="loginPopup"/>
+    </fx:Declarations>
     <s:layout>
         <s:VerticalLayout paddingTop="20" paddingLeft="20" paddingRight="20"
             clipAndEnableScrolling="true"/>
     </s:layout>
-
 
     <s:Label text="Please Login"
              fontSize="42"

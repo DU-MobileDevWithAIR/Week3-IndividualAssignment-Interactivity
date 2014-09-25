@@ -38,8 +38,6 @@
                     registerPopup.message = 'Thank you for registering';
                 }
 
-
-
                 registerPopup.open( this, true );
                 PopUpManager.centerPopUp( registerPopup );
             }
