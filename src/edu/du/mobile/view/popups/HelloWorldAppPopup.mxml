@@ -23,7 +23,8 @@
             horizontalAlign="center"
             paddingTop="20" gap="20">
 
-            <s:Label text="{ message }"/>
+            <s:Label text="{ message }"
+                    width = "95%"/>
 
             <s:Button label="{ buttonLabel }"
                 click="close();"/>
