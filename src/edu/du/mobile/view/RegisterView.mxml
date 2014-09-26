@@ -12,7 +12,6 @@
 
             private function _onSubmitClick( event:Event ):void
             {
-                // TODO: Make sure all required fields are filled out
                 var error:String = '';
                 var username:String = reg_username_ti.text;
                 var email:String = reg_email_ti.text;
@@ -21,14 +20,6 @@
                 var gender:Object = genderRBGroup.selectedValue;
                 var agree:Boolean = agreeToTerms_chk.selected;
 
-                // TODO: If the required fields are filled out, display the registerPopup
-                //      with title = "Form Submit Success" and message = "Thank you for registering"
-                //
-                //  OR
-                //
-                //  If all required form fields are not filled out, then display the registerPopup
-                //      with title = "Form Submit Failed"
-                //      and message = "Please fill out all required (*) fields and try again."
                 if (username == '' || email == '' ||
                     password == '' || password_confirm == '' || agree == false ) {
                     registerPopup.title = 'Form Submit Failed';

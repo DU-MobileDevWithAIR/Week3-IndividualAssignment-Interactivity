@@ -9,7 +9,6 @@
         <![CDATA[
             private function _onListChange( event:Event ):void
             {
-                // TODO: Navigate to the Location Details view.
                 navigator.pushView(LocationDetailsView,locationList.selectedItem);
             }
         ]]>
