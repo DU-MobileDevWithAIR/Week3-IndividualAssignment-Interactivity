@@ -3,38 +3,91 @@
   Created by jun on 9/14/14.
 -->
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-    xmlns:s="library://ns.adobe.com/flex/spark">
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:popups="edu.du.mobile.view.popups.*"
+    title="Login">
+    <fx:Script>
+        <![CDATA[
+        import mx.managers.PopUpManager;
+        private function _onSubmitClick(event:Event):void {
+            // 1. When the submit button is clicked make sure username and password are filled out
 
-    <!-- TODO: Make this view work similar to the RegisterView:
-            1. When the submit button is clicked make sure username and password are filled out
-            2. If the fields are filled out make sure username is "student" and password is "password"
-            3. Make sure "password" is all lower case.
-            4. If 1,2,3 and all confirmed, show a success alert. Otherwise show a failed alert
-                    with a message that says why it failed. -->
+            // Prepare user input for evaluation
+            var evaluateUsername:String = username_ti.text;
+            var evaluatePassword:String = password_ti.text;
+            // 3. Make sure "password" is all lower case.
+            // This is sort of redundant since we're already doing a string comparison. Its good practice though!
+            var isValidPassword:Boolean = (evaluatePassword.match(/[A-Z]/g).length == 0);
 
+            // Setup a container for any errors encountered.
+            var errorsToDisplay:Array = new Array();
 
+            // 2. If the fields are filled out make sure username is "student" and password is "password"
 
+            var validateUsername:Object = {stringTest: evaluateUsername, expected: "student", error: "* Your username is not correct."}
+            var validatePassword:Object = {stringTest: evaluatePassword, expected: "password", error: "* Your password is not correct."};
+            var validatePasswordCase:Object = {stringTest: isValidPassword, expected: true, error: "* Your password is not lowercase."};
+
+            var evaluateTextValues:Array = [validateUsername, validatePassword, validatePasswordCase];
+
+            for (var i:String in evaluateTextValues) {
+                // Reset previous styles if the user is trying again
+                    if (evaluateTextValues[i].stringTest !== evaluateTextValues[i].expected) {
+                        errorsToDisplay.push("\n"); // Make it a bit more readable
+                        errorsToDisplay.push(evaluateTextValues[i].error);
+                }
+            }
+            //   4. If 1,2,3 and all confirmed, show a success alert. Otherwise show a failed alert
+            //   with a message that says why it failed.
+            if (errorsToDisplay.length == 0) {
+                loginPopup.title = 'Form Submit Success';
+                loginPopup.message = 'Your username and password are correct.';
+            }
+            else {
+                loginPopup.title = 'Form Submit Failed';
+                loginPopup.message = 'Oops - one or more errors occurred:';
+                for (var x:String in errorsToDisplay) {
+                    loginPopup.message += errorsToDisplay[x];
+                    trace(loginPopup.message);
+                }
+            }
+            loginPopup.open(this, true);
+            PopUpManager.bringToFront(loginPopup);
+            loginPopup.x = 20;
+            loginPopup.y = 20;
+            //PopUpManager.centerPopUp(registerPopup);
+        }
+        ]]>
+    </fx:Script>
+    <fx:Declarations>
+        <popups:HelloWorldAppPopup id="loginPopup"/>
+    </fx:Declarations>
     <s:layout>
         <s:VerticalLayout paddingTop="20" paddingLeft="20" paddingRight="20"
             clipAndEnableScrolling="true"/>
     </s:layout>
 
+    <s:VGroup id="registerForm" width="90%">
 
     <s:Label text="Please Login"
              fontSize="42"
-             paddingLeft="100"
+             textAlign="left"
              paddingBottom="20"/>
 
-    <s:Label text="Username or email"/>
-    <s:TextInput id="username_ti"/>
+    <s:Label text="Username or email" percentWidth="98"/>
+    <s:TextInput id="username_ti"  percentWidth="98"/>
 
     <s:Label text="password"
-             paddingTop="20"/>
+             paddingTop="20"
+             percentWidth="98"/>
     <s:TextInput id="password_ti"
-                 displayAsPassword="true"/>
+                 displayAsPassword="true"
+                 percentWidth="98"/>
 
     <s:Button id="submit_btn"
               label="Login"
-              left="150"/>
+              left="150"
+              click="_onSubmitClick( event )"/>
+    </s:VGroup>
 
 </s:View>

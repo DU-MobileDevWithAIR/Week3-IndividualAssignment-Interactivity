@@ -13,21 +13,17 @@
             [Bindable] public var title:String = "Hello World Popup";
             [Bindable] public var message:String = "Popup Message";
             [Bindable] public var buttonLabel:String = "OK";
-
         ]]>
     </fx:Script>
 
-    <s:Panel title="{ title }">
+    <s:Panel title="{ title }" width="98%">
 
-        <s:VGroup width="100%"
+        <s:VGroup percentWidth="100"
             horizontalAlign="center"
             paddingTop="20" gap="20">
-
-            <s:Label text="{ message }"/>
-
+            <s:Label text="{ message }" percentWidth="100"/>
             <s:Button label="{ buttonLabel }"
                 click="close();"/>
-
         </s:VGroup>
 
     </s:Panel>

@@ -4,28 +4,101 @@
 -->
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
     xmlns:s="library://ns.adobe.com/flex/spark"
-    xmlns:popups="edu.du.mobile.view.popups.*">
-
+    xmlns:popups="edu.du.mobile.view.popups.*"
+    title="Register">
     <fx:Script>
         <![CDATA[
-            import mx.managers.PopUpManager;
+        import mx.managers.PopUpManager;
 
-            private function _onSubmitClick( event:Event ):void
-            {
-                // TODO: Make sure all required fields are filled out
+        private function _onSubmitClick(event:Event):void {
+            // TODO: Make sure all required fields are filled out
+            // First, the legitimate values for each field are defined
 
-                // TODO: If the required fields are filled out, display the registerPopup
-                //      with title = "Form Submit Success" and message = "Thank you for registering"
-                //
-                //  OR
-                //
-                //  If all required form fields are not filled out, then display the registerPopup
-                //      with title = "Form Submit Failed"
-                //      and message = "Please fill out all required (*) fields and try again."
+            //s Regex borrowed from:
+            // http://help.adobe.com/en_US/ActionScript/3.0_ProgrammingAS3/WS5b3ccc516d4fbf351e63e3d118a9b90204-7f97.html
+            // Match intent:  alpha numeric @ alpha numeric dot something
+            var validEmail = new RegExp("([0-9a-zA-Z]+[-._+&])*[0-9a-zA-Z]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}");
 
-                registerPopup.open( this, true );
-                PopUpManager.centerPopUp( registerPopup );
+            // Regex borrowed from:
+            // http://stackoverflow.com/questions/10568660/actionscript3-regex-expression-for-password-that-
+            // checks-number-of-characters
+            // Match intent: 6-15 characters, one lower, one upper, one number
+            var validPassword = new RegExp("^.*(?=.{6,15})(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).*$");
+
+
+            // Prepare user input for evaluation
+            var evaluateUsername:String = reg_username_ti.text;
+            var evaluateEmail:String = reg_email_ti.text;
+            var evaluatePassword:String = reg_password_ti.text;
+            var evaluatePasswordConfirm:String = confirm_password_ti.text;
+            var evaluateGender:RadioButtonGroup = genderRBGroup as RadioButtonGroup;
+            var evaluateSelectedGender:RadioButton = evaluateGender.selection;
+
+            // Perform basic validation (bool expected from regex matches and string comparison)
+            var isValidEmail:Boolean = evaluateEmail.match(validEmail);
+            var isValidPassword:Boolean = evaluatePassword.match(validPassword);
+            var isMatchingPassword:Boolean = (evaluatePassword == evaluatePasswordConfirm);
+            var isValidTerms:Boolean = agreeToTerms_chk.selected;
+
+            // Setup a container for any errors encountered.
+            var errorsToDisplay:Array = new Array();
+
+            // Prepare error messages
+            var validateUsername:Object = {stringTest: evaluateUsername, expected: "not empty", error: "* Whoops! You need to enter a username."}
+            var validateEmail:Object = {stringTest: isValidEmail, expected: true, error: "* The e-mail address you entered is not valid."};
+            var validatePassword:Object = {stringTest: isValidPassword, expected: true, error: "* Your password does not meet the requirements."};
+            var validatePasswordMatch:Object = {stringTest: isMatchingPassword, expected: true, error: "* The passwords you entered do not match."}
+            var validateGender:Object = {stringTest: evaluateSelectedGender, expected: "not empty", error: "* You need to select a gender."};
+            var validateTerms:Object = {stringTest:isValidTerms, expected:true, error:"* You need to agree to the terms."};
+
+            var evaluateTextValues:Array = [validateUsername, validateEmail, validatePassword, validatePasswordMatch, validateGender, validateTerms];
+
+            for (var i:String in evaluateTextValues) {
+                // Reset previous styles if the user is trying again
+                if (evaluateTextValues[i].expected == true) {
+                    if (evaluateTextValues[i].stringTest !== evaluateTextValues[i].expected) {
+                        errorsToDisplay.push("\n"); // Make it a bit more readable
+                        errorsToDisplay.push(evaluateTextValues[i].error);
+                    }
+                }
+
+                else {
+                    if (evaluateTextValues[i].stringTest == null || evaluateTextValues[i].stringTest == '') {
+                        // If the select group has no children selected, it will return null. This checks
+                        // for both null and empty strings (username).
+                        errorsToDisplay.push("\n");
+                        errorsToDisplay.push(evaluateTextValues[i].error);
+                    }
+                }
             }
+
+            // TODO: If the required fields are filled out, display the registerPopup
+            //      with title = "Form Submit Success" and message = "Thank you for registering"
+            //
+            //  OR
+            //
+            //  If all required form fields are not filled out, then display the registerPopup
+            //      with title = "Form Submit Failed"
+            //      and message = "Please fill out all required (*) fields and try again."
+
+            if (errorsToDisplay.length == 0) {
+                registerPopup.title = 'Form Submit Success';
+                registerPopup.message = 'Thank you for registering';
+            }
+            else {
+                registerPopup.title = 'Form Submit Failed';
+                registerPopup.message = 'Please fill out all required (*) fields and try again.';
+                for (var i:String in errorsToDisplay) {
+                    registerPopup.message += errorsToDisplay[i];
+                    trace(registerPopup.message);
+                }
+            }
+            registerPopup.open(this, true);
+            PopUpManager.bringToFront(registerPopup);
+            registerPopup.x = 20;
+            registerPopup.y = 20;
+            //PopUpManager.centerPopUp(registerPopup);
+        }
         ]]>
     </fx:Script>
 
@@ -33,33 +106,37 @@
         <s:RadioButtonGroup id="genderRBGroup"/>
         <popups:HelloWorldAppPopup id="registerPopup"/>
     </fx:Declarations>
-
-    <s:Scroller height="100%" width="100%"
-        top="20" left="20" right="20">
-
-        <s:VGroup id="registerForm">
+    <s:VGroup width="100%" height="98%" horizontalAlign="center" id="registrationGroup" top="20">
+    <!-- In place of scoller, a container and vscrollbar have been used. This was done in
+         order to promote expected behavior in all devices emulated; scroller did not
+         result in the expected behavior. -->
+    <s:VGroup id="registerForm" width="90%">
 
             <s:Label text="Register"
-                fontSize="42"
-                paddingLeft="140"/>
+                fontSize="42" textAlign="left" percentWidth="98"/>
 
-            <s:Label text="Username *"/>
+            <s:Label text="Username *"  percentWidth="98"/>
             <s:TextInput id="reg_username_ti"
-                prompt="choose a username"/>
+                prompt="choose a username"  percentWidth="98"/>
 
-            <s:Label text="Email *"/>
+            <s:Label text="Email *"  percentWidth="98"/>
             <s:TextInput id="reg_email_ti"
-                prompt="please enter your email"/>
+                prompt="please enter your email"  percentWidth="98"/>
 
-            <s:Label text="Password *"/>
+            <s:Label text="Password *"  percentWidth="98"/>
             <s:TextInput id="reg_password_ti"
                 prompt="please choose a password"
-                displayAsPassword="true"/>
+                displayAsPassword="true"
+                percentWidth="98"/>
+            <s:Label color="0xd3d3d3" fontSize="12"
+                     percentWidth="98"
+                     text="Please pick a password with 6 to 15 characters and at least one upper-case letter, one lower-case letter, and one number." />
 
-            <s:Label text="Confirm password *"/>
+            <s:Label text="Confirm password *"  percentWidth="98"/>
             <s:TextInput id="confirm_password_ti"
                 prompt="please confirm your password"
-                displayAsPassword="true"/>
+                displayAsPassword="true"
+                percentWidth="98"/>
 
             <s:Label text="gender"/>
             <s:HGroup id="genderSelect">
@@ -84,6 +161,7 @@
                 click="_onSubmitClick( event )"/>
 
         </s:VGroup>
+    </s:VGroup>
+    <s:VScrollBar viewport="{registrationGroup}" height="100%"/>
 
-    </s:Scroller>
 </s:View>

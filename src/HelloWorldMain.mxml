@@ -6,7 +6,21 @@
     xmlns:s="library://ns.adobe.com/flex/spark"
     firstView="edu.du.mobile.view.TemporaryView"
     title="Hello World!">
-
+    <fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";
+        s|Form
+        {
+            skinClass: ClassReference("spark.skins.spark.StackedFormSkin");
+        }
+        s|FormHeading
+        {
+            skinClass: ClassReference("spark.skins.spark.StackedFormHeadingSkin");
+        }
+        s|FormItem
+        {
+            skinClass: ClassReference("spark.skins.spark.StackedFormItemSkin");
+        }
+    </fx:Style>
     <s:navigationContent>
         <s:Button label="Home" click="navigator.popToFirstView()"/>
     </s:navigationContent>

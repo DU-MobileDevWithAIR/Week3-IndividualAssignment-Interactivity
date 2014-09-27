@@ -3,13 +3,16 @@
   Created by jun on 9/14/14.
 -->
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-    xmlns:s="library://ns.adobe.com/flex/spark">
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    title="Locations">
 
     <fx:Script>
         <![CDATA[
-            private function _onListChange( event:Event ):void
+            import spark.events.IndexChangeEvent;
+            private function _onListChange( event:IndexChangeEvent):void
             {
                 // TODO: Navigate to the Location Details view.
+                navigator.pushView(LocationDetailsView,locationList.selectedItem);
             }
         ]]>
     </fx:Script>
@@ -19,13 +22,12 @@
     </s:layout>
 
 
-    <s:HGroup>
-        <s:Label text="Nearby Locations"
-            paddingLeft="125"/>
+    <s:HGroup width="98%">
+        <s:Label text="Nearby Locations" paddingRight="20"/>
         <s:Label text="Done"
             fontSize="18"
             color="blue"
-            paddingLeft="70"/>
+            paddingLeft="70" click="navigator.popToFirstView()"/>
     </s:HGroup>
 
 
@@ -33,7 +35,8 @@
     <s:List id="locationList"
         top="100"
         width="100%"
-        height="100%">
+        height="100%"
+        change="_onListChange(event)">
 
         <s:ArrayList>
             <fx:String>Item one</fx:String>
