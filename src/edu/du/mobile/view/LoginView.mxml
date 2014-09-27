@@ -3,7 +3,9 @@
   Created by jun on 9/14/14.
 -->
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-    xmlns:s="library://ns.adobe.com/flex/spark">
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:popups="edu.du.mobile.view.popups.*"
+        creationComplete="initApp();">
 
     <!-- TODO: Make this view work similar to the RegisterView:
             1. When the submit button is clicked make sure username and password are filled out
@@ -11,8 +13,50 @@
             3. Make sure "password" is all lower case.
             4. If 1,2,3 and all confirmed, show a success alert. Otherwise show a failed alert
                     with a message that says why it failed. -->
+<fx:Script>
+<![CDATA[
+        import mx.managers.PopUpManager;
 
+        private function initApp():void {
+                submit_btn.addEventListener(MouseEvent.CLICK, myEventHandler);
+            }
 
+        private function myEventHandler(event:Event):void {
+                var error:String = '';
+                var correct_username:String = 'student';
+                var correct_password:String = 'password';
+                var username:String = username_ti.text;
+                var password:String = password_ti.text;
+
+                if (username == '') {
+                        error += "Username is empty.";
+                    } else if (username != correct_username) {
+                        error += "Username is incorrect.\n";
+                    }
+
+                        if (password == '') {
+                        error += "Password is empty\n";
+                    } else if (password != correct_password) {
+                        error += "Password is incorrect\n";
+                    }
+
+                        if (error != '') {
+                        loginPopup.title = 'Your Login failed.';
+                        loginPopup.message = error;
+                    } else {
+                        loginPopup.title = 'Success.';
+                        loginPopup.message = 'Your login succeeded.';
+                    }
+
+                        loginPopup.open( this, true );
+                PopUpManager.centerPopUp( loginPopup );
+            }
+        ]]>
+    </fx:Script>
+
+        <fx:Declarations>
+        <popups:HelloWorldAppPopup id="loginPopup"/>
+        </fx:Declarations>
 
     <s:layout>
         <s:VerticalLayout paddingTop="20" paddingLeft="20" paddingRight="20"

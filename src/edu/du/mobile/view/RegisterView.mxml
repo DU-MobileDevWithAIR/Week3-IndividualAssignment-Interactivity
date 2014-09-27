@@ -6,6 +6,7 @@
     xmlns:s="library://ns.adobe.com/flex/spark"
     xmlns:popups="edu.du.mobile.view.popups.*">
 
+
     <fx:Script>
         <![CDATA[
         import mx.managers.PopUpManager;
@@ -13,7 +14,6 @@
         private function _onSubmitClick( event:Event ):void
         {
             // TODO: Make sure all required fields are filled out
-
             // TODO: If the required fields are filled out, display the registerPopup
             if (reg_username_ti.text.length > 0 && reg_email_ti.text.length > 0 &&
                     reg_password_ti.text.length > 0 && confirm_password_ti.text.length > 0 && agreeToTerms_chk.selected == true) {
