@@ -3,24 +3,27 @@
   Created by scotty on 9/21/14.
 -->
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-    xmlns:s="library://ns.adobe.com/flex/spark">
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    title="Location Details">
 
-    <s:Scroller top="20" left="20" right="20"
-        height="100%">
+    <!--<s:Scroller top="20" left="20" right="20"
+        height="100%">-->
+    <!-- Same comments as in RegisterView. Scroller did not perform as expected during emulation -->
+    <s:VGroup width="100%" height="98%" horizontalAlign="center" id="details" top="20">
+    <s:VGroup>
 
-        <s:VGroup >
-
-            <s:HGroup>
+            <s:HGroup width="98%">
                 <s:Label text="Map"
                    color="blue"
-                   paddingLeft="25"/>
+                   percentWidth="32"/>
                 <s:Label text="Location"
-                   paddingLeft="100"/>
+                         percentWidth="32"/>
                 <s:Label text="Share"
                    color="blue"
-                   paddingLeft="70"/>
+                   percentWidth="32"/>
             </s:HGroup>
-
+            <!-- Provide rudimentary user feedback -->
+            <s:Label text="You selected {String(data)}" />
             <s:Image id="locationImage"
                height="300"
                width="100%"
@@ -51,5 +54,8 @@
 
         </s:VGroup>
 
-    </s:Scroller>
+    <!--</s:Scroller>-->
+    </s:VGroup>
+    <s:VScrollBar viewport="{details}" height="100%"/>
+
 </s:View>
