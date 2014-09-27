@@ -13,8 +13,6 @@
 
         private function _onSubmitClick( event:Event ):void
         {
-            // TODO: Make sure all required fields are filled out
-            // TODO: If the required fields are filled out, display the registerPopup
             if (reg_username_ti.text.length > 0 && reg_email_ti.text.length > 0 &&
                     reg_password_ti.text.length > 0 && confirm_password_ti.text.length > 0 && agreeToTerms_chk.selected == true) {
                 registerSuccessPopup.open( this, true );

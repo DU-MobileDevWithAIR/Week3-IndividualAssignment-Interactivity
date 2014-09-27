@@ -7,55 +7,56 @@
         xmlns:popups="edu.du.mobile.view.popups.*"
         creationComplete="initApp();">
 
-    <!-- TODO: Make this view work similar to the RegisterView:
-            1. When the submit button is clicked make sure username and password are filled out
-            2. If the fields are filled out make sure username is "student" and password is "password"
-            3. Make sure "password" is all lower case.
-            4. If 1,2,3 and all confirmed, show a success alert. Otherwise show a failed alert
-                    with a message that says why it failed. -->
 <fx:Script>
 <![CDATA[
-        import mx.managers.PopUpManager;
+    import mx.managers.PopUpManager;
 
-        private function initApp():void {
-                submit_btn.addEventListener(MouseEvent.CLICK, myEventHandler);
+    private function initApp():void {
+        submit_btn.addEventListener(MouseEvent.CLICK, loginClick);
+    }
+
+    private function loginClick(e:Event):void {
+        var usernameCheck:String = 'student';
+        var passwordCheck:String = 'password';
+        var usernameInput:String = username_ti.text;
+        var passwordInput:String = password_ti.text;
+        var err:String = '';
+
+        if (usernameInput == usernameCheck && passwordInput == passwordCheck) {
+            PopupMessage.title = 'Success.';
+            PopupMessage.message = 'Your login succeeded.';
+            PopupMessage.open(this, true);
+            PopUpManager.centerPopUp(PopupMessage);
+        } else {
+            if (usernameInput != usernameCheck) {
+                if (usernameInput == '') {
+                    err += 'Error: Empty username\n';
+                } else {
+                    err += "Error: Incorrect username\n";
+                }
             }
 
-        private function myEventHandler(event:Event):void {
-                var error:String = '';
-                var correct_username:String = 'student';
-                var correct_password:String = 'password';
-                var username:String = username_ti.text;
-                var password:String = password_ti.text;
-
-                if (username == '') {
-                        error += "Username is empty.";
-                    } else if (username != correct_username) {
-                        error += "Username is incorrect.\n";
-                    }
-
-                        if (password == '') {
-                        error += "Password is empty\n";
-                    } else if (password != correct_password) {
-                        error += "Password is incorrect\n";
-                    }
-
-                        if (error != '') {
-                        loginPopup.title = 'Your Login failed.';
-                        loginPopup.message = error;
-                    } else {
-                        loginPopup.title = 'Success.';
-                        loginPopup.message = 'Your login succeeded.';
-                    }
-
-                        loginPopup.open( this, true );
-                PopUpManager.centerPopUp( loginPopup );
+            if (passwordInput != passwordCheck) {
+                if (passwordInput == '') {
+                    err += 'Error: Password is empty\n';
+                } else {
+                    err += 'Error: Incorrect password\n';
+                }
             }
-        ]]>
+
+            if (err.length > 0) {
+                PopupMessage.title = 'Your Login failed.\n';
+                PopupMessage.message = err;
+                PopupMessage.open(this, true);
+                PopUpManager.centerPopUp(PopupMessage)
+            }
+        }
+    }
+    ]]>
     </fx:Script>
 
         <fx:Declarations>
-        <popups:HelloWorldAppPopup id="loginPopup"/>
+        <popups:HelloWorldAppPopup id="PopupMessage"/>
         </fx:Declarations>
 
     <s:layout>
