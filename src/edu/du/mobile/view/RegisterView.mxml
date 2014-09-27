@@ -12,20 +12,35 @@
 
         private function _onSubmitClick(event:Event):void
         {
+            var username:String = reg_username_ti.text;
+            var email:String =  reg_email_ti.text;
+            var password:String = reg_password_ti.text;
+            var confirm_password:String = confirm_password_ti.text;
+            var gender:Object = genderRBGroup.selectedValue;
+            var agree:Boolean = agreeToTerms_chk.selected;
+
             // TODO: Make sure all required fields are filled out
 
             if (reg_username_ti.text.length > 0 && reg_email_ti.text.length > 0 && reg_password_ti.text.length > 0 &&
                     confirm_password_ti.text.length > 0 && agreeToTerms_chk.selected == true)
             {
                 // TODO: If the required fields are filled out, display the registerPopup
+
+                registerPopup.title = "Form Submit Success"
+                registerPopup.message = "Thank you for registering"
                 registerPopup.open(this, true);
                 PopUpManager.centerPopUp(registerPopup);
+
             }
             else
             {
+                registerPopup.title = "Form Submit Failed";
+                registerPopup.message = "Please fill out all required fields"
                 registerPopup.open(this, true);
                 PopUpManager.centerPopUp(registerPopup);
             }
+
+
         }
         ]]>
     </fx:Script>
@@ -33,7 +48,6 @@
     <fx:Declarations>
         <s:RadioButtonGroup id="genderRBGroup"/>
         <popups:HelloWorldAppPopup id="registerPopup"/>
-
     </fx:Declarations>
 
     <s:Scroller height="100%" width="100%"
