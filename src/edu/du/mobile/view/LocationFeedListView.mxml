@@ -9,7 +9,7 @@
         <![CDATA[
             private function _onListChange( event:Event ):void
             {
-                // TODO: Navigate to the Location Details view.
+                navigator.pushView(LocationDetailsView,locationList.selectedItem);
             }
         ]]>
     </fx:Script>
@@ -33,7 +33,8 @@
     <s:List id="locationList"
         top="100"
         width="100%"
-        height="100%">
+        height="100%"
+        click="_onListChange(event)">
 
         <s:ArrayList>
             <fx:String>Item one</fx:String>
