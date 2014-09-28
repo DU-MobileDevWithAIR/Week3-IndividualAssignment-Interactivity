@@ -11,15 +11,18 @@
 
     private function _onSubmitClick(event:Event):void {
 
+        var username:String = username_ti.text;
+        var password:String = password_ti.text;
+
         if (username_ti.text == "" && password_ti.text == "") {
 
             // TODO: If the required fields are filled out, display the registerPopup
             registerPopup.title = "Login Failed";
-            registerPopup.message = "Please fill out all required fields"
+            registerPopup.message = "Please fill out your username and password"
             registerPopup.open(this, true);
             PopUpManager.centerPopUp(registerPopup);
         }
-        else if (username_ti.text != "student" && password_ti.text != "password")
+        else if (username_ti.text.toLowerCase() != "student" && password_ti.text != "password")
         {
             registerPopup.title = "incorrect password or username";
             registerPopup.message = "error";
@@ -64,6 +67,7 @@
 
     <s:Button id="submit_btn"
               label="Login"
-              left="150"/>
+              left="150"
+              click="_onSubmitClick( event )"/>
 
 </s:View>
