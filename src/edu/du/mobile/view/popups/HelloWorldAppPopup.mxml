@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <!--
   Created by jun on 9/21/14.
+  Modified by Kami on 9/28/14.
 
   Derived from: http://help.adobe.com/en_US/flex/using/WS67cd75b2532ad652-1abb110512d5bda966d-8000.html
 -->
@@ -17,13 +18,13 @@
         ]]>
     </fx:Script>
 
-    <s:Panel title="{ title }">
+    <s:Panel title="{ title }" width="96%">
 
         <s:VGroup width="100%"
             horizontalAlign="center"
             paddingTop="20" gap="20">
 
-            <s:Label text="{ message }"/>
+            <s:Label text="{ message }" width="100%"/>
 
             <s:Button label="{ buttonLabel }"
                 click="close();"/>
