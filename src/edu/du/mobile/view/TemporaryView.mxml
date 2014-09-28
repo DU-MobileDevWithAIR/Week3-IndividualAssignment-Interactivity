@@ -21,7 +21,7 @@
         label="Preview Location Feed List View"
         click="navigator.pushView( LocationFeedListView )"/>
 
-    <!-- <s:Button id="previewLocationDetails_btn"
+    <s:Button id="previewLocationDetails_btn"
               label="Preview Location Details View"
               click="navigator.pushView( LocationDetailsView )"/> -->
 
