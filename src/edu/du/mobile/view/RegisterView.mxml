@@ -8,24 +8,40 @@
 
     <fx:Script>
         <![CDATA[
-            import mx.managers.PopUpManager;
+        import mx.managers.PopUpManager;
 
-            private function _onSubmitClick( event:Event ):void
+        private function _onSubmitClick(event:Event):void
+        {
+            var username:String = reg_username_ti.text;
+            var email:String =  reg_email_ti.text;
+            var password:String = reg_password_ti.text;
+            var confirm_password:String = confirm_password_ti.text;
+            var gender:Object = genderRBGroup.selectedValue;
+            var agree:Boolean = agreeToTerms_chk.selected;
+
+            // TODO: Make sure all required fields are filled out
+
+            if (reg_username_ti.text.length > 0 && reg_email_ti.text.length > 0 && reg_password_ti.text.length > 0 &&
+                    confirm_password_ti.text.length > 0 && agreeToTerms_chk.selected == true)
             {
-                // TODO: Make sure all required fields are filled out
-
                 // TODO: If the required fields are filled out, display the registerPopup
-                //      with title = "Form Submit Success" and message = "Thank you for registering"
-                //
-                //  OR
-                //
-                //  If all required form fields are not filled out, then display the registerPopup
-                //      with title = "Form Submit Failed"
-                //      and message = "Please fill out all required (*) fields and try again."
 
-                registerPopup.open( this, true );
-                PopUpManager.centerPopUp( registerPopup );
+                registerPopup.title = "Form Submit Success"
+                registerPopup.message = "Thank you for registering"
+                registerPopup.open(this, true);
+                PopUpManager.centerPopUp(registerPopup);
+
             }
+            else
+            {
+                registerPopup.title = "Form Submit Failed";
+                registerPopup.message = "Please fill out all required fields"
+                registerPopup.open(this, true);
+                PopUpManager.centerPopUp(registerPopup);
+            }
+
+
+        }
         ]]>
     </fx:Script>
 
