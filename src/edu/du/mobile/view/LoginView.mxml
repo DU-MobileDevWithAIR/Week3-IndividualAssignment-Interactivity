@@ -13,27 +13,31 @@
 
         var username:String = username_ti.text;
         var password:String = password_ti.text;
+        var student_username:String = "student";
+        var password_password:String = "password";
+        var error:String = '';
 
         if (username_ti.text == "" && password_ti.text == "") {
 
             // TODO: If the required fields are filled out, display the registerPopup
-            registerPopup.title = "Login Failed";
-            registerPopup.message = "Please fill out your username and password"
             registerPopup.open(this, true);
+            registerPopup.title = "Login Failed";
+            registerPopup.message = "Please enter your username and password"
             PopUpManager.centerPopUp(registerPopup);
         }
-        else if (username_ti.text.toLowerCase() != "student" && password_ti.text != "password")
+        else if (username_ti.text.toLowerCase() != "student"
+                ||  password_ti.text != "password")
         {
+            registerPopup.open(this, true);
             registerPopup.title = "incorrect password or username";
             registerPopup.message = "error";
-            registerPopup.open(this, true);
             PopUpManager.centerPopUp(registerPopup);
         }
         else
         {
+            registerPopup.open(this, true);
             registerPopup.title = "Login Success"
             registerPopup.message = "You are now logged in."
-            registerPopup.open(this, true);
             PopUpManager.centerPopUp(registerPopup);
         }
 
