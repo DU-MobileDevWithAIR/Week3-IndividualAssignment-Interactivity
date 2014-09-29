@@ -3,16 +3,35 @@
   Created by jun on 9/14/14.
 -->
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-    xmlns:s="library://ns.adobe.com/flex/spark">
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:popups="edu.du.mobile.view.popups.*">
 
-    <!-- TODO: Make this view work similar to the RegisterView:
-            1. When the submit button is clicked make sure username and password are filled out
-            2. If the fields are filled out make sure username is "student" and password is "password"
-            3. Make sure "password" is all lower case.
-            4. If 1,2,3 and all confirmed, show a success alert. Otherwise show a failed alert
-                    with a message that says why it failed. -->
+    <fx:Script>
+        <![CDATA[
+        import mx.managers.PopUpManager;
 
+        private function _onSubmitClick( event:Event ):void
+        {
+            var user:String = username_ti.text;
+            var pass:String = password_ti.text;
 
+            if (user=="student" && pass==="password"){
+                loginPopup.title = "Form Submit Success";
+                loginPopup.message = "Thank you for registering."
+            } else {
+                loginPopup.title = "Form Submit Failed";
+                loginPopup.message = "Password and Username do not match."
+            }
+
+            loginPopup.open( this, true );
+            PopUpManager.centerPopUp( loginPopup );
+        }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <popups:HelloWorldAppPopup id="loginPopup"/>
+    </fx:Declarations>
 
     <s:layout>
         <s:VerticalLayout paddingTop="20" paddingLeft="20" paddingRight="20"
@@ -35,6 +54,7 @@
 
     <s:Button id="submit_btn"
               label="Login"
-              left="150"/>
+              left="150"
+              click="_onSubmitClick( event )"/>
 
 </s:View>
