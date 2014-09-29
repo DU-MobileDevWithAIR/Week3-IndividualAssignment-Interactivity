@@ -8,35 +8,30 @@
 
     <fx:Script>
         <![CDATA[
-        import mx.core.IFlexDisplayObject;
-        import mx.managers.PopUpManager;;
+        import mx.managers.PopUpManager;
 
-                private function _onSubmitClick(event:Event):void
-                {
-                        if(reg_username_ti.text == "" || reg_email_ti.text == "" ||
-                        reg_password_ti.text == "" || confirm_password_ti.text == ""
-                        || !agreeToTerms_chk.selected)
-                    {
-                        registerPopup.open(this, true);
-                        registerPopup.title = "Form Submit Failed"
-                        registerPopup.message = "Please fill out all required (*) fields and try again."
-                        PopUpManager.centerPopUp(registerPopup);
-                    }
-                    else if (reg_password_ti.text != confirm_password_ti.text)
-                    {
-                        registerPopup.open(this, true);
-                        registerPopup.title = "Password does not match";
-                        registerPopup.message = "Passwords must match. Please try again.";
-                        PopUpManager.centerPopUp(registerPopup);
-                    }
-                    else
-                    {
-                        registerPopup.open(this, true);
-                        registerPopup.title = "Form submission successful.";
-                        registerPopup.message = "Thank you for registering";
-                        PopUpManager.centerPopUp(registerPopup);
-                    }
+        private function _onSubmitClick(event:Event):void {
+            if (reg_username_ti.text == "" || reg_email_ti.text == "" ||
+                    reg_password_ti.text == "" || confirm_password_ti.text == ""
+                    || !agreeToTerms_chk.selected) {
+                registerPopup.open(this, true);
+                registerPopup.title = "Form Submit Failed"
+                registerPopup.message = "Please fill out all required (*) fields and try again."
+                PopUpManager.centerPopUp(registerPopup);
             }
+            else if (reg_password_ti.text != confirm_password_ti.text) {
+                registerPopup.open(this, true);
+                registerPopup.title = "Password does not match";
+                registerPopup.message = "Passwords must match. Please try again.";
+                PopUpManager.centerPopUp(registerPopup);
+            }
+            else {
+                registerPopup.open(this, true);
+                registerPopup.title = "Form submission successful.";
+                registerPopup.message = "Thank you for registering";
+                PopUpManager.centerPopUp(registerPopup);
+            }
+        }
         ]]>
     </fx:Script>
 
