@@ -46,7 +46,7 @@
         <s:VGroup id="registerForm">
 
             <s:Label text="Register"
-                fontSize="42"
+                fontSize="38"
                 paddingLeft="140"/>
 
             <s:Label text="Username *"/>
