@@ -3,14 +3,45 @@
   Created by jun on 9/14/14.
 -->
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-    xmlns:s="library://ns.adobe.com/flex/spark">
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:popups="edu.du.mobile.view.popups.*">
 
-    <!-- TODO: Make this view work similar to the RegisterView:
-            1. When the submit button is clicked make sure username and password are filled out
-            2. If the fields are filled out make sure username is "student" and password is "password"
-            3. Make sure "password" is all lower case.
-            4. If 1,2,3 and all confirmed, show a success alert. Otherwise show a failed alert
-                    with a message that says why it failed. -->
+    <fx:Script>
+        <![CDATA[
+                import mx.managers.PopUpManager;
+
+                private function _onSubmitClick( event:Event ):void
+                    {
+                        if(username_ti.text == "" && password_ti.text == "")
+                        {
+                            loginPopup.open(this, true);
+                            loginPopup.title = "Login Failed";
+                            loginPopup.message = "Please enter your username and password.";
+                            PopUpManager.centerPopUp(loginPopup);
+                        }
+                        else if (username_ti.text.toLowerCase() != "student" //user name not case sensitive
+                                || password_ti.text != "password") //password is case sensitive
+                        {
+                            loginPopup.open(this, true);
+                            loginPopup.title = "Entry Invalid";
+                            loginPopup.message = "Username or password is incorrect. Please try again.";
+                            PopUpManager.centerPopUp(loginPopup);
+                        }
+                        else
+                        {
+                            loginPopup.open(this, true);
+                            loginPopup.title = "Login Successful";
+                            loginPopup.message = "You are logged in.";
+                            PopUpManager.centerPopUp(loginPopup);
+                        }
+
+                    }
+                ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <popups:HelloWorldAppPopup id="loginPopup"/>
+    </fx:Declarations>
 
 
 
@@ -35,6 +66,7 @@
 
     <s:Button id="submit_btn"
               label="Login"
-              left="150"/>
+              left="150"
+              click="_onSubmitClick(event)"/>
 
 </s:View>
