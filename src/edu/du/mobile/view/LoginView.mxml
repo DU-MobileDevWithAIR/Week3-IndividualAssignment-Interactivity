@@ -3,16 +3,49 @@
   Created by jun on 9/14/14.
 -->
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-    xmlns:s="library://ns.adobe.com/flex/spark">
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:popups="edu.du.mobile.view.popups.*">
 
-    <!-- TODO: Make this view work similar to the RegisterView:
+    <!-- Make this view work similar to the RegisterView:
             1. When the submit button is clicked make sure username and password are filled out
             2. If the fields are filled out make sure username is "student" and password is "password"
             3. Make sure "password" is all lower case.
             4. If 1,2,3 and all confirmed, show a success alert. Otherwise show a failed alert
                     with a message that says why it failed. -->
 
+    <fx:Script>
+        <![CDATA[
+        import mx.managers.PopUpManager;
 
+        private function _onSubmitClick(event:Event):void {
+            if (username_ti.text == "" || password_ti.text == "") {
+                registerPopup.title = "Login Failed"
+                registerPopup.message = "Please fill out username and password"
+            }
+            else {
+                var str:String = username_ti.toString();
+                str = str.toLocaleLowerCase();
+                trace(str, password_ti);
+                if (username_ti.text.toLowerCase() == "student" && password_ti.text == "password") {
+                    registerPopup.title = "Login Success";
+                    registerPopup.message = "Welcome " + username_ti.text;
+                }
+                else {
+                    registerPopup.title = "Login Failed";
+                    registerPopup.message = "Username or Password not valid";
+                }
+            }
+
+            registerPopup.open(this, true);
+            PopUpManager.centerPopUp(registerPopup);
+        }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <s:RadioButtonGroup id="genderRBGroup"/>
+        <popups:HelloWorldAppPopup id="registerPopup"/>
+    </fx:Declarations>
 
     <s:layout>
         <s:VerticalLayout paddingTop="20" paddingLeft="20" paddingRight="20"
@@ -35,6 +68,7 @@
 
     <s:Button id="submit_btn"
               label="Login"
-              left="150"/>
+              left="150"
+              click="_onSubmitClick(event)"/>
 
 </s:View>
