@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+  Created by sanker on 10/12/2014.
+-->
+<s:SkinnablePopUpContainer xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark">
+    <fx:Script>
+        <![CDATA[
+
+        [Bindable] public var title:String = "Login succesfull";
+        [Bindable] public var message:String = "Go ahead";
+        [Bindable] public var buttonLabel:String = "OK";
+
+        ]]>
+
+    </fx:Script>
+
+    <s:Panel title="{ title }">
+
+        <s:VGroup width="100%"
+                  horizontalAlign="center"
+                  paddingTop="20" gap="20">
+
+            <s:Label text="{ message }"/>
+
+            <s:Button label="{ buttonLabel }"
+                      click="close();"/>
+
+        </s:VGroup>
+
+    </s:Panel>
+
+</s:SkinnablePopUpContainer>

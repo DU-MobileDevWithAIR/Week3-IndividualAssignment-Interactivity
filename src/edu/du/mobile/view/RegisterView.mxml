@@ -12,6 +12,52 @@
 
             private function _onSubmitClick( event:Event ):void
             {
+
+                trace( 'Validate required fields' );
+
+
+                reg_username_ti.styleName = '';
+                reg_email_ti.styleName = '';
+                reg_password_ti.styleName = '';
+                confirm_password_ti.styleName = '';
+
+
+                trace( 'User Name: ' + reg_username_ti.text );
+                trace( 'email ' + reg_email_ti.text );
+                trace( 'password ' + reg_password_ti.text );
+
+
+                if (reg_username_ti.text.length && reg_email_ti.text.length && reg_password_ti.text.length && confirm_password_ti.text.length
+                         && agreeToTerms_chk)
+                {
+                    trace( 'Valid Fields' );
+                    registerPopup.open( this, true );
+                    PopUpManager.centerPopUp( registerPopup );
+
+
+
+                }
+                else
+                {
+                    trace( 'Not Valid Fields' );
+
+                    // Highlight fields not valid
+                    if( !( reg_username_ti.text.length))reg_username_ti.errorString='Required';
+                    if( !( reg_email_ti.text.length))reg_email_ti.errorString='Required';
+                    if( !( reg_password_ti.text.length))reg_password_ti.errorString='Required';
+
+
+                    {
+                        trace( 'check the required fields' );
+                        secondPopup.open( this, true );
+                        PopUpManager.centerPopUp( secondPopup );
+
+
+                    }
+
+
+
+                }
                 // TODO: Make sure all required fields are filled out
 
                 // TODO: If the required fields are filled out, display the registerPopup
@@ -23,8 +69,7 @@
                 //      with title = "Form Submit Failed"
                 //      and message = "Please fill out all required (*) fields and try again."
 
-                registerPopup.open( this, true );
-                PopUpManager.centerPopUp( registerPopup );
+
             }
         ]]>
     </fx:Script>
@@ -32,6 +77,7 @@
     <fx:Declarations>
         <s:RadioButtonGroup id="genderRBGroup"/>
         <popups:HelloWorldAppPopup id="registerPopup"/>
+        <popups:FailPopup id="secondPopup"/>
     </fx:Declarations>
 
     <s:Scroller height="100%" width="100%"
@@ -82,6 +128,7 @@
             <s:Button id="submit_btn"
                 label="register"
                 click="_onSubmitClick( event )"/>
+
 
         </s:VGroup>
 
